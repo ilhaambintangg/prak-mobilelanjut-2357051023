@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
+import 'screens/dashboard_screen.dart';
 
 void main() => runApp(const JustduitApp());
 
@@ -13,7 +14,7 @@ class JustduitApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Justduit',
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFFF3F6F8), // abu-abu muda
+        scaffoldBackgroundColor: const Color(0xFFF3F6F8),
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFF1E88FF),
@@ -40,9 +41,10 @@ class JustduitApp extends StatelessWidget {
       ),
       initialRoute: LoginScreen.route,
       routes: {
-        '/': (context) => const LoginScreen(), // default = Sign In
+        '/': (context) => const LoginScreen(), // default Sign In
         LoginScreen.route: (context) => const LoginScreen(),
         SignupScreen.route: (context) => const SignupScreen(),
+        DashboardScreen.route: (context) => const DashboardScreen(), // konsisten
       },
     );
   }
