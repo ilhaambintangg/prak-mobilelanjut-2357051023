@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
+import 'dashboard_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/signin';
@@ -22,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // komponen kecil buat label + tanda *
+    // Label dengan tanda bintang merah
     Widget requiredLabel(String text) => Row(
           children: [
             Text(text, style: const TextStyle(fontSize: 13)),
@@ -30,6 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ],
         );
 
+    // Tombol utama dengan gradient
     Widget primaryButton(String label, VoidCallback onTap) => GestureDetector(
           onTap: onTap,
           child: Container(
@@ -67,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // logo
+                // Logo
                 Image.asset(
                   'assets/logo-mola.png',
                   height: 80,
@@ -75,7 +77,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 18),
 
-                // judul
+                // Judul
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: Align(
@@ -91,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 14),
 
-                // card form (dibangun manual)
+                // Card form login
                 Container(
                   width: 360,
                   margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -110,22 +112,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Input Email
                       requiredLabel('Email Address'),
                       const SizedBox(height: 6),
                       TextField(
                         controller: _email,
-                        keyboardType: TextInputType.emailAddress,
+                        keyboardType: TextInputType.emailAddress, // keyboard email
+                        textInputAction: TextInputAction.next,
                         decoration: const InputDecoration(
                           hintText: 'Enter your email',
                         ),
                       ),
                       const SizedBox(height: 14),
 
+                      // Input Password
                       requiredLabel('Password'),
                       const SizedBox(height: 6),
                       TextField(
                         controller: _pass,
-                        obscureText: true,
+                        obscureText: true, // sembunyikan input
+                        keyboardType: TextInputType.text, // keyboard huruf standar
+                        textInputAction: TextInputAction.done,
                         decoration: const InputDecoration(
                           hintText: 'Enter your password',
                         ),
@@ -135,8 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          style:
-                              TextButton.styleFrom(padding: EdgeInsets.zero),
+                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
                           onPressed: () {},
                           child: const Text(
                             'Forgot Password',
@@ -146,13 +152,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       const SizedBox(height: 6),
 
+                      // Tombol Sign In
                       primaryButton('Sign In Now', () {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Sign In tapped')),
-                        );
+                        if (_email.text.isEmpty || _pass.text.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content:
+                                  Text('Email dan password harus diisi!'),
+                            ),
+                          );
+                        } else {
+                          Navigator.pushReplacementNamed(
+                              context, DashboardScreen.route);
+                        }
                       }),
                       const SizedBox(height: 14),
 
+                      // Tombol buat akun baru
                       Center(
                         child: TextButton(
                           onPressed: () => Navigator.pushNamed(
