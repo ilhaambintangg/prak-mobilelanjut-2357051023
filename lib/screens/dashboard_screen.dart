@@ -66,7 +66,7 @@ class DashboardScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   const Text(
-                    'Rp 1.234.567',
+                    'Rp 1.000.000.000',
                     style: TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,

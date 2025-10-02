@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'signup_screen.dart';
 import 'dashboard_screen.dart';
+import 'splash_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/signin';
@@ -157,13 +158,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         if (_email.text.isEmpty || _pass.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content:
-                                  Text('Email dan password harus diisi!'),
+                              content: Text('Email dan password harus diisi!'),
                             ),
                           );
                         } else {
                           Navigator.pushReplacementNamed(
-                              context, DashboardScreen.route);
+                            context,
+                            SplashScreen.route, // Arahkan ke SplashScreen
+                          );
                         }
                       }),
                       const SizedBox(height: 14),
@@ -171,8 +173,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       // Tombol buat akun baru
                       Center(
                         child: TextButton(
-                          onPressed: () => Navigator.pushNamed(
-                              context, SignupScreen.route),
+                          onPressed: () =>
+                              Navigator.pushNamed(context, SignupScreen.route),
                           child: const Text(
                             'Create New Account',
                             style: TextStyle(fontSize: 13),
