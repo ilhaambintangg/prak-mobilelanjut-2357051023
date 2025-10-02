@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
 import 'screens/dashboard_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() => runApp(const JustduitApp());
 
@@ -39,12 +40,13 @@ class JustduitApp extends StatelessWidget {
           ),
         ),
       ),
-      initialRoute: LoginScreen.route,
+      initialRoute: LoginScreen.route, // mulai dari halaman login
       routes: {
         '/': (context) => const LoginScreen(), // default Sign In
         LoginScreen.route: (context) => const LoginScreen(),
         SignupScreen.route: (context) => const SignupScreen(),
-        DashboardScreen.route: (context) => const DashboardScreen(), // konsisten
+        SplashScreen.route: (context) => const SplashScreen(), // ✅ Tambahan SplashScreen
+        DashboardScreen.route: (context) => const DashboardScreen(),
       },
     );
   }
